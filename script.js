@@ -87,7 +87,6 @@ function calculateAndShow() {
   document.getElementById('res_total').textContent = formatCurrency(cobertura);
   document.getElementById('premio_mensal').textContent = formatCurrency(mensalidade);
   
-  // --- LÓGICA DE REPRESENTATIVIDADE DA RENDA ATUALIZADA ---
   const repPercent = represent * 100;
   const repRendaEl = document.getElementById('rep_renda');
   const marketStatusEl = document.getElementById('marketStatus');
@@ -101,20 +100,19 @@ function calculateAndShow() {
       repTextEl.textContent = 'Preencha sua renda para análise.';
   } else if (repPercent < 2) {
       marketStatusEl.textContent = 'Abaixo do ideal';
-      marketStatusEl.style.color = '#f0ad4e'; // Amarelo
-      repTextEl.textContent = 'A proteção da sua família representa um valor acessível do seu orçamento, facilitando o primeiro passo para garantir o futuro que você planejou.';
+      marketStatusEl.style.color = '#f0ad4e';
+      repTextEl.textContent = 'Seu investimento em proteção está abaixo do recomendado por especialistas (2-5% da renda).';
   } else if (repPercent <= 5) {
       marketStatusEl.textContent = 'Na média ideal';
-      marketStatusEl.style.color = '#28a745'; // Verde
-      repTextEl.textContent = 'Seu planejamento está em perfeito equilíbrio: você protege sua família com um investimento alinhado à sua renda e às nossas recomendações.';
+      marketStatusEl.style.color = '#28a745';
+      repTextEl.textContent = 'Seu investimento em proteção está na faixa recomendada por especialistas.';
   } else {
       marketStatusEl.textContent = 'Acima da média';
-      marketStatusEl.style.color = '#d9534f'; // Vermelho
-      repTextEl.textContent = 'Seu plano demonstra que a proteção da sua família é uma alta prioridade. Um consultor pode ajudar a otimizar os valores para garantir o melhor custo-benefício.';
+      marketStatusEl.style.color = '#d9534f';
+      repTextEl.textContent = 'Seu investimento está acima da média. Um consultor pode ajudar a otimizar seu plano.';
   }
 
-  // Dica Rápida
-  document.getElementById('quickTip').textContent = 'É recomendado revisar seu plano de proteção a cada 3 anos ou em caso de mudanças de vida (casamento, filhos, etc).';
+  document.getElementById('quickTip').textContent = 'Especialistas recomendam revisar seu plano de proteção a cada 3 anos ou em caso de mudanças de vida (casamento, filhos, etc).';
   
   drawPie( [totalEduc, totalVida, totalInvent], ['Educação', 'Padrão de Vida', 'Inventário'] );
   document.getElementById('toStep6').disabled = false;
@@ -176,7 +174,48 @@ function populateContact() {
   }
 }
 
-document.getElementById('sendLeadBtn').addEventListener('click', () => { /* Sua lógica de envio aqui */ });
+// --- LÓGICA DE ENVIO PARA O WHATSAPP ---
+document.getElementById('sendLeadBtn').addEventListener('click', () => {
+    // 1. Coleta dos dados do formulário
+    const nome = document.getElementById('contact_nome').value;
+    const cpf = document.getElementById('cpf_input').value;
+    const { cobertura, mensalidade } = window._lastSim || {};
+
+    // Validação simples
+    if (!nome || !cpf || !cobertura) {
+        alert('Por favor, preencha seu Nome e CPF.');
+        return;
+    }
+
+    // 2. Montagem da mensagem
+    const textMessage = `
+*Nova Oportunidade | Planner Financeiro*
+
+Olá! Gostaria de ativar meu plano de proteção.
+Seguem meus dados para contato:
+
+*Nome:* ${nome}
+*CPF:* ${cpf}
+
+*--- Resumo do Diagnóstico ---*
+*Valor Necessário (Proteção Total):* ${formatCurrency(cobertura)}
+*Valor do Plano (Investimento Mensal):* ${formatCurrency(mensalidade)}
+    `;
+
+    // 3. Geração do link e abertura do WhatsApp
+    // IMPORTANTE: Insira seu número de WhatsApp aqui com o código do país e DDD, sem o + e sem espaços.
+    const yourWhatsAppNumber = '5581981524257'; 
+
+    const encodedMessage = encodeURIComponent(textMessage.trim().replace(/  +/g, ' '));
+    const waLink = `https://wa.me/${yourWhatsAppNumber}?text=${encodedMessage}`;
+    
+    const leadMessage = document.getElementById('leadMessage');
+    leadMessage.textContent = 'Abrindo o WhatsApp para você enviar a solicitação...';
+    
+    // Abre a nova aba
+    window.open(waLink, '_blank');
+});
+
 
 // Inicialização
 attachCurrencyMasks();
