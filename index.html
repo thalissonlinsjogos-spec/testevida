@@ -3,48 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Diagnóstico de Proteção Financeira</title>
+  <title>Diagnóstico de Proteção Financeira | MAPFRE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 <body>
-  <div class="wrap card stage">
-    <div>
+
+  <header class="main-header">
+    <div class="header-container">
+      <img src="https://www.mapfre.com.br/carro-do-futuro/images/logo-red.png" alt="Logo MAPFRE" class="logo">
+    </div>
+  </header>
+
+  <div class="wrap stage">
+    <div class="intro-text">
       <h1>Qual o valor ideal para proteger o futuro da sua família?</h1>
-      <p class="lead">Descubra em minutos o valor exato que sua família precisa para manter a segurança financeira.</p>
+      <p class="lead">Descubra em minutos o valor exato que sua família precisa para manter a segurança financeira. Uma ferramenta de diagnóstico completa, rápida e 100% segura.</p>
     </div>
 
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+    <div class="progress-container">
       <div class="progress">
         <div id="stepPill" class="step-pill">Início</div>
         <div class="progress-text" id="progressText"></div>
       </div>
-      <div style="color:var(--muted);font-size:13px">Tempo estimado: <strong>~2 minutos</strong></div>
+      <div class="estimated-time">Tempo estimado: <strong>~2 minutos</strong></div>
     </div>
 
-    <div style="overflow:hidden;margin-top:14px">
+    <div class="slider-outer-wrapper">
       <div id="slider" class="slider">
 
         <section class="slide">
           <div class="card">
-            <h2 style="color:var(--accent)">Como funciona o Diagnóstico?</h2>
+            <h2 class="slide-title-main">Como funciona o Diagnóstico?</h2>
             <div class="how-it-works">
-                <div class="step">
-                    <div class="step-icon"><i class="fas fa-keyboard"></i></div>
-                    <div class="step-text"><h3>Preenchimento Rápido</h3><p>Você informa de forma anônima os valores referentes aos seus custos e objetivos.</p></div>
-                </div>
-                <div class="step">
-                    <div class="step-icon"><i class="fas fa-calculator"></i></div>
-                    <div class="step-text"><h3>Análise Instantânea</h3><p>Nossa ferramenta calcula o valor ideal para cada pilar da sua proteção financeira.</p></div>
-                </div>
-                <div class="step">
-                    <div class="step-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                    <div class="step-text"><h3>Resultado Online</h3><p>Você visualiza seu diagnóstico completo na tela, sem precisar se cadastrar.</p></div>
-                </div>
+                <div class="step"><div class="step-icon"><i class="fas fa-keyboard"></i></div><div class="step-text"><h3>Preenchimento Rápido</h3><p>Você informa de forma anônima os valores referentes aos seus custos e objetivos.</p></div></div>
+                <div class="step"><div class="step-icon"><i class="fas fa-calculator"></i></div><div class="step-text"><h3>Análise Instantânea</h3><p>Nossa ferramenta calcula o valor ideal para cada pilar da sua proteção financeira.</p></div></div>
+                <div class="step"><div class="step-icon"><i class="fas fa-file-invoice-dollar"></i></div><div class="step-text"><h3>Resultado Online</h3><p>Você visualiza seu diagnóstico completo na tela, sem precisar se cadastrar.</p></div></div>
             </div>
              <div class="privacy-box">
                 <i class="fas fa-user-secret"></i>
-                <p>Sua privacidade é nossa prioridade. Seus dados não são armazenados e ninguém entrará em contato sem a sua expressa autorização na última etapa.</p>
+                <p>Sua privacidade é nossa prioridade. Seus dados <strong>não são armazenados e ninguém entrará em contato sem a sua expressa autorização</strong> na última etapa.</p>
             </div>
             <div class="buttons" style="justify-content: flex-end;">
                 <button id="startBtn" class="btn-primary">Iniciar Diagnóstico</button>
@@ -55,10 +56,11 @@
         <section class="slide">
           <div class="card">
             <h2 class="slide-title"><i class="fas fa-user"></i> Sobre Você</h2>
+            <p class="slide-description">Para começar, precisamos de algumas informações básicas para personalizar sua análise.</p>
             <form id="step1" class="row">
-              <div><label>Seu nome</label><input id="nome" type="text" placeholder="" /></div>
-              <div><label>Qual a sua idade?</label><input id="idade" type="number" min="0" max="120" value="" /></div>
-              <div><label>Qual é a sua renda mensal?</label><input id="renda" type="text" class="currency" value="" /></div>
+              <div class="form-group"><label for="nome">Seu nome</label><input id="nome" type="text" placeholder="Como podemos te chamar?" /><p class="input-helper">Preferimos um tratamento pessoal e amigável.</p></div>
+              <div class="form-group"><label for="idade">Qual a sua idade?</label><input id="idade" type="number" min="0" max="120" value="" placeholder="Ex: 35" /><p class="input-helper">Sua idade é um fator importante para a estimativa do seguro.</p></div>
+              <div class="form-group full"><label for="renda">Qual é a sua renda mensal?</label><input id="renda" type="text" class="currency" value="" /><p class="input-helper">Usado para analisar o impacto do investimento em seu orçamento.</p></div>
               <div class="full buttons">
                   <button type="button" class="btn-ghost" id="backFrom1">Voltar</button>
                   <button type="button" class="btn-primary" id="toStep2">Próxima</button>
@@ -70,15 +72,15 @@
         <section class="slide">
           <div class="card">
             <div class="slide-title"><i class="fas fa-graduation-cap"></i> Pilar 1: O Futuro da Educação</div>
-            <p class="slide-description">Garanta que a formação de quem depende de você não seja interrompida. Some todos os gastos mensais por dependente, como mensalidade escolar, cursos, material e transporte.</p>
+            <p class="slide-description">Garanta a formação de quem depende de você. Calcule o custo para garantir os estudos até a faculdade (geralmente aos 25 anos).</p>
             <form id="eduForm" class="row">
-              <div class="full" style="margin-bottom:8px"><label><input type="checkbox" id="noKidsEdu" /> &nbsp; Não possuo dependentes em fase de estudo</label></div>
-              <div><label>Idade do filho 1</label><input id="idade_f1" type="number" min="0" value="" /></div>
-              <div><label>Gasto mensal (filho 1)</label><input id="custo_f1" class="currency" type="text" value="" /></div>
-              <div><label>Idade do filho 2</label><input id="idade_f2" type="number" min="0" value="" /></div>
-              <div><label>Gasto mensal (filho 2)</label><input id="custo_f2" class="currency" type="text" value="" /></div>
-              <div><label>Idade do filho 3</label><input id="idade_f3" type="number" min="0" value="" /></div>
-              <div><label>Gasto mensal (filho 3)</label><input id="custo_f3" class="currency" type="text" value="" /></div>
+              <div class="full" style="margin-bottom:8px"><label class="checkbox-label"><input type="checkbox" id="noKidsEdu" /> Não possuo dependentes em fase de estudo</label></div>
+              <div class="form-group"><label for="idade_f1">Idade do filho 1</label><input id="idade_f1" type="number" min="0" value="" placeholder="Ex: 8" /><p class="input-helper">Idade atual do primeiro dependente.</p></div>
+              <div class="form-group"><label for="custo_f1">Gasto mensal (filho 1)</label><input id="custo_f1" class="currency" type="text" value="" /><p class="input-helper">Inclua mensalidade, cursos, material, etc.</p></div>
+              <div class="form-group"><label for="idade_f2">Idade do filho 2</label><input id="idade_f2" type="number" min="0" value="" placeholder="Ex: 5" /><p class="input-helper">Deixe em branco se não houver.</p></div>
+              <div class="form-group"><label for="custo_f2">Gasto mensal (filho 2)</label><input id="custo_f2" class="currency" type="text" value="" /><p class="input-helper">Custo mensal do segundo dependente.</p></div>
+              <div class="form-group"><label for="idade_f3">Idade do filho 3</label><input id="idade_f3" type="number" min="0" value="" /><p class="input-helper">Deixe em branco se não houver.</p></div>
+              <div class="form-group"><label for="custo_f3">Gasto mensal (filho 3)</label><input id="custo_f3" class="currency" type="text" value="" /><p class="input-helper">Custo mensal do terceiro dependente.</p></div>
               <div class="full buttons">
                 <button type="button" class="btn-ghost" id="backTo1fromEdu">Voltar</button>
                 <button type="button" class="btn-primary" id="toStep3">Próxima</button>
@@ -90,12 +92,12 @@
         <section class="slide">
           <div class="card">
             <div class="slide-title"><i class="fas fa-home"></i> Pilar 2: Manutenção do Padrão de Vida</div>
-            <p class="slide-description">Esta reserva garante que sua família possa honrar os principais custos por 5 anos (60 meses), um período de fôlego para que possam se reestruturar sem dificuldades financeiras.</p>
+            <p class="slide-description">Esta reserva garante que sua família possa honrar os principais custos por 5 anos (60 meses), um período de fôlego para que possam se reestruturar sem dificuldades.</p>
             <form id="lifeForm" class="row">
-              <div><label>Moradia (Aluguel, condomínio, etc)</label><input id="moradia" class="currency" type="text" value="" /></div>
-              <div><label>Alimentação (Supermercado, feira)</label><input id="alimentacao" class="currency" type="text" value="" /></div>
-              <div><label>Saúde (Plano, farmácia)</label><input id="saude" class="currency" type="text" value="" /></div>
-              <div><label>Lazer e outros custos</label><input id="lazer" class="currency" type="text" value="" /></div>
+              <div class="form-group"><label for="moradia">Moradia</label><input id="moradia" class="currency" type="text" value="" /><p class="input-helper">Aluguel, condomínio, financiamento.</p></div>
+              <div class="form-group"><label for="alimentacao">Alimentação</label><input id="alimentacao" class="currency" type="text" value="" /><p class="input-helper">Supermercado, feira, etc.</p></div>
+              <div class="form-group"><label for="saude">Saúde</label><input id="saude" class="currency" type="text" value="" /><p class="input-helper">Plano de saúde, farmácia.</p></div>
+              <div class="form-group"><label for="lazer">Lazer e outros</label><input id="lazer" class="currency" type="text" value="" /><p class="input-helper">Contas, transporte, lazer, etc.</p></div>
               <div class="full buttons">
                 <button type="button" class="btn-ghost" id="backToEduFromLife">Voltar</button>
                 <button type="button" class="btn-primary" id="toStep4">Próxima</button>
@@ -107,11 +109,11 @@
         <section class="slide">
           <div class="card">
             <div class="slide-title"><i class="fas fa-landmark"></i> Pilar 3: Custos de Inventário e Legado</div>
-            <p class="slide-description">A transferência de bens para herdeiros gera custos de cartório, advogados e impostos (ITCMD). Esta reserva evita que sua família precise vender bens ou se endividar para receber seu legado.</p>
+            <p class="slide-description">A transferência de bens gera custos (advogados, impostos). Esta reserva evita que sua família precise vender patrimônio para receber seu legado. Informe valores aproximados.</p>
             <form id="invForm" class="row">
-              <div><label>Valor de Imóveis (R$)</label><input id="imoveis" class="currency" type="text" value="" /></div>
-              <div><label>Valor de Veículos (R$)</label><input id="carros" class="currency" type="text" value="" /></div>
-              <div><label>Investimentos (Poupança, ações, etc)</label><input id="investimentos" class="currency" type="text" value="" /></div>
+              <div class="form-group"><label for="imoveis">Valor de Imóveis (R$)</label><input id="imoveis" class="currency" type="text" value="" /><p class="input-helper">Valor de mercado aproximado.</p></div>
+              <div class="form-group"><label for="carros">Valor de Veículos (R$)</label><input id="carros" class="currency" type="text" value="" /><p class="input-helper">Some o valor de todos os veículos.</p></div>
+              <div class="form-group full"><label for="investimentos">Investimentos (R$)</label><input id="investimentos" class="currency" type="text" value="" /><p class="input-helper">Poupança, ações, fundos, etc.</p></div>
               <div class="full buttons">
                 <button type="button" class="btn-ghost" id="backToLifeFromInv">Voltar</button>
                 <button type="button" class="btn-primary" id="toStep5">Ver Meu Diagnóstico</button>
@@ -121,27 +123,34 @@
         </section>
 
         <section class="slide">
+            <div class="card card-loading">
+                <div class="spinner"></div>
+                <h2 class="slide-title-main">Calculando seu diagnóstico...</h2>
+                <p class="slide-description" style="text-align:center;">Estamos personalizando o resultado com base nas suas informações.</p>
+            </div>
+        </section>
+
+        <section class="slide">
           <div class="card">
-            <h2 style="color:var(--accent-strong); margin-bottom:12px; text-align:center;">Seu Diagnóstico Financeiro</h2>
+            <h2 class="slide-title-main">Seu Diagnóstico Financeiro</h2>
             <div class="grid-3">
-              <div class="result-card"><div class="muted">🎓 Futuro da Educação</div><div id="res_educ" class="big">R$ 0,00</div></div>
-              <div class="result-card"><div class="muted">🏡 Padrão de Vida (5 anos)</div><div id="res_life" class="big">R$ 0,00</div></div>
-              <div class="result-card"><div class="muted">🏛️ Custos de Inventário</div><div id="res_inv" class="big">R$ 0,00</div></div>
+              <div class="result-card"><div>🎓 Futuro da Educação</div><div id="res_educ" class="big">R$ 0,00</div></div>
+              <div class="result-card"><div>🏡 Padrão de Vida (5 anos)</div><div id="res_life" class="big">R$ 0,00</div></div>
+              <div class="result-card"><div>🏛️ Custos de Inventário</div><div id="res_inv" class="big">R$ 0,00</div></div>
             </div>
             <div class="coverage-box">
-              <div class="muted">Capital Total Recomendado para Proteção Financeira</div>
+              <div class="muted">Capital Total Recomendado para Proteção</div>
               <div class="value" id="res_total">R$ 0,00</div>
-              <div class="coverage-sub">Este é o montante que garante a sua família, estabilidade para que possam se reestruturar sem preocupações.</div>
+              <div class="coverage-sub">Este é o montante que garante estabilidade para sua família se reestruturar sem preocupações.</div>
             </div>
             <div class="mensal-box">
               <div class="muted">Investimento Mensal Estimado</div>
               <div class="value" id="premio_mensal">R$ 0,00</div>
               <div class="coverage-sub">Um <strong>seguro de vida</strong> é a forma mais acessível de garantir este valor total para sua família imediatamente.</div>
             </div>
-            
             <div class="info-grid">
               <div class="info-cell">
-                <div class="muted">Representatividade sobre sua renda</div>
+                <div class="muted">Representa na sua renda</div>
                 <div class="info-content">
                   <div id="rep_renda" class="big-info">—</div>
                   <div id="marketStatus" class="status-text"></div>
@@ -151,18 +160,15 @@
               <div class="info-cell">
                 <div class="muted">Dica Rápida</div>
                 <div class="info-content">
-                    <div id="quickTip" class="big-info" style="font-size: 16px;"></div>
+                    <div id="quickTip" class="quick-tip-text"></div>
                 </div>
               </div>
             </div>
-
             <div class="chartwrap">
               <div class="chart-container"><canvas id="breakdownChart"></canvas></div>
               <div class="legend" id="chartLegend"></div>
             </div>
-            
             <p class="cta-prompt">O diagnóstico está feito. O próximo passo é transformar este plano em tranquilidade real.</p>
-
             <div class="buttons" style="justify-content: space-between;">
               <button type="button" class="btn-ghost" id="backToInvFromRes">Voltar</button>
               <button type="button" class="btn-primary" id="toStep6" disabled>Ativar meu plano</button>
@@ -172,27 +178,42 @@
 
         <section class="slide">
           <div class="card">
-            <h3 style="color:var(--accent); text-align:center;">Ative Seu Plano de Proteção</h3>
-            <p style="color:var(--muted); text-align:center;">Para concluir, preencha seus dados de contato. As informações do seu diagnóstico serão enviadas a um corretor parceiro que entrará em contato com você.</p>
+            <h2 class="slide-title-main">Ative Seu Plano de Proteção</h2>
+            <p class="slide-description" style="text-align:center;">Para concluir, preencha seus dados. As informações serão enviadas via WhatsApp para que um especialista entre em contato com você.</p>
             <form id="contactForm" class="row" style="margin-top:20px;">
-                <div><label>Nome</label><input id="contact_nome" type="text" /></div>
-                <div><label>CPF</label><input id="cpf_input" type="text" /></div>
-                <div><label>Idade</label><input id="contact_idade" type="number" /></div>
-                <div><label>WhatsApp (com DDD)</label><input id="wh_input" type="text" /></div>
-                <div class="full"><label>Valor Total da Proteção (Automático)</label><input id="valor_total_input" type="text" readonly /></div>
-                <div class="full"><label>Investimento Mensal (Automático)</label><input id="valor_mensal_input" type="text" readonly /></div>
+                <div class="form-group"><label for="contact_nome">Nome Completo</label><input id="contact_nome" type="text" /><p class="input-helper">Necessário para a cotação oficial.</p></div>
+                <div class="form-group"><label for="cpf_input">CPF</label><input id="cpf_input" type="text" /><p class="input-helper">Essencial para a emissão da sua apólice.</p></div>
+                <div class="form-group full"><label>Valor Total da Proteção (Automático)</label><input id="valor_total_input" type="text" readonly /><p class="input-helper">Este valor foi calculado em seu diagnóstico.</p></div>
+                <div class="form-group full"><label>Investimento Mensal (Automático)</label><input id="valor_mensal_input" type="text" readonly /><p class="input-helper">Esta é uma estimativa do seu investimento.</p></div>
                 <div class="full buttons">
                     <button type="button" class="btn-ghost" id="backToResFromCont">Voltar</button>
-                    <button type="button" class="btn-primary" id="sendLeadBtn">Solicitar Contato</button>
+                    <button type="button" class="btn-primary" id="sendLeadBtn">Solicitar Contato via WhatsApp</button>
                 </div>
             </form>
-            <div id="leadMessage" style="margin-top:12px;font-size:14px;color:var(--muted);text-align:center;"></div>
+            <div id="leadMessage" class="lead-message"></div>
           </div>
         </section>
 
       </div>
     </div>
   </div>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="broker-info">
+        <p>Este diagnóstico é uma ferramenta de simulação. A comercialização do seguro de vida MAPFRE é realizada através da <strong>TersegMais Corretora de Seguros</strong>, uma empresa devidamente habilitada pela SUSEP e autorizada a distribuir os produtos MAPFRE.</p>
+      </div>
+      <div class="legal-info">
+        <p>Um produto da MAPFRE Seguros Gerais S.A., CNPJ 61.074.175/0001-38. O registro deste plano na SUSEP não implica, por parte da Autarquia, incentivo ou recomendação à sua comercialização.</p>
+        <p class="susep-process">
+          <strong>Processos SUSEP:</strong>
+          <span>– Bilhete de Seguro – nº 15414.634203/2019-28</span>
+          <span>– Apólice de Seguro – nº 15414.630594/2019-10</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js" defer></script>
 </body>
