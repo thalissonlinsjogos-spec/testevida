@@ -30,9 +30,10 @@ let current = 0;
 
 function updateSlider() {
   slider.style.transform = `translateX(-${current * 100}%)`;
-  const names = ['Início', 'Sobre Você', 'Educação', 'Padrão de Vida', 'Inventário', 'Diagnóstico', 'Contato'];
+  const names = ['Início', 'Sobre Você', 'Educação', 'Padrão de Vida', 'Inventário', 'Calculando...', 'Diagnóstico', 'Contato'];
   stepPill.textContent = names[current];
-  progressText.textContent = `Etapa ${Math.max(0, current)} de ${names.length - 2}`;
+  const totalSteps = names.length - 3; // Início, Calculando e Contato não contam como etapas principais
+  progressText.textContent = `Etapa ${Math.max(0, current)} de ${totalSteps}`;
 }
 
 // Navegação entre os slides
@@ -40,15 +41,24 @@ document.getElementById('startBtn').addEventListener('click', () => { current = 
 document.getElementById('toStep2').addEventListener('click', () => { current = 2; updateSlider(); });
 document.getElementById('toStep3').addEventListener('click', () => { current = 3; updateSlider(); });
 document.getElementById('toStep4').addEventListener('click', () => { current = 4; updateSlider(); });
-document.getElementById('toStep5').addEventListener('click', () => { calculateAndShow(); current = 5; updateSlider(); });
-document.getElementById('toStep6').addEventListener('click', () => { populateContact(); current = 6; updateSlider(); });
+document.getElementById('toStep5').addEventListener('click', () => {
+    current = 5; // Vai para a tela de "Calculando..."
+    updateSlider();
+    setTimeout(() => {
+        calculateAndShow();
+        current = 6; // Vai para a tela de resultados
+        updateSlider();
+    }, 2500); // Simula 2.5 segundos de cálculo
+});
+document.getElementById('toStep6').addEventListener('click', () => { populateContact(); current = 7; updateSlider(); });
 
+// Botões de Voltar
 document.getElementById('backFrom1').addEventListener('click', () => { current = 0; updateSlider(); });
 document.getElementById('backTo1fromEdu').addEventListener('click', () => { current = 1; updateSlider(); });
 document.getElementById('backToEduFromLife').addEventListener('click', () => { current = 2; updateSlider(); });
 document.getElementById('backToLifeFromInv').addEventListener('click', () => { current = 3; updateSlider(); });
 document.getElementById('backToInvFromRes').addEventListener('click', () => { current = 4; updateSlider(); });
-document.getElementById('backToResFromCont').addEventListener('click', () => { current = 5; updateSlider(); });
+document.getElementById('backToResFromCont').addEventListener('click', () => { current = 6; updateSlider(); });
 
 
 function calculateAndShow() {
@@ -96,7 +106,7 @@ function calculateAndShow() {
 
   if (!isFinite(repPercent) || repPercent === 0) {
       marketStatusEl.textContent = 'N/A';
-      marketStatusEl.style.color = 'var(--muted)';
+      marketStatusEl.style.color = 'var(--color-text-muted)';
       repTextEl.textContent = 'Preencha sua renda para análise.';
   } else if (repPercent < 2) {
       marketStatusEl.textContent = 'Abaixo do ideal';
@@ -112,7 +122,7 @@ function calculateAndShow() {
       repTextEl.textContent = 'Seu investimento está acima da média. Um consultor pode ajudar a otimizar seu plano.';
   }
 
-  document.getElementById('quickTip').textContent = 'Especialistas recomendam revisar seu plano de proteção a cada 3 anos ou em caso de mudanças de vida (casamento, filhos, etc).';
+  document.getElementById('quickTip').textContent = 'Recomendamos revisar seu plano de proteção a cada 2 anos ou em caso de mudanças de vida (casamento, filhos, etc).';
   
   drawPie( [totalEduc, totalVida, totalInvent], ['Educação', 'Padrão de Vida', 'Inventário'] );
   document.getElementById('toStep6').disabled = false;
@@ -122,7 +132,7 @@ function calculateAndShow() {
 let breakdownChart;
 function drawPie(values, labels) {
     const ctx = document.getElementById('breakdownChart').getContext('2d');
-    const chartColors = ['#7B0B12', '#B12327', '#FFD6D6'];
+    const chartColors = ['#7B0B12', '#d52b1e', '#555555'];
     const filteredData = values
         .map((value, index) => ({ value, label: labels[index], color: chartColors[index] }))
         .filter(item => item.value > 0);
@@ -168,6 +178,8 @@ function drawPie(values, labels) {
 
 function populateContact() {
   const { cobertura, mensalidade } = window._lastSim || {};
+  const nome = document.getElementById('nome').value;
+  if(nome) { document.getElementById('contact_nome').value = nome; }
   if (cobertura && mensalidade) {
     document.getElementById('valor_total_input').value = formatCurrency(cobertura);
     document.getElementById('valor_mensal_input').value = formatCurrency(mensalidade);
@@ -218,5 +230,7 @@ Seguem meus dados para contato:
 
 
 // Inicialização
-attachCurrencyMasks();
-updateSlider();
+document.addEventListener('DOMContentLoaded', () => {
+  attachCurrencyMasks();
+  updateSlider();
+});
