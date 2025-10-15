@@ -1,12 +1,12 @@
 :root {
-  --color-burgundy: #7B0B12;
-  --color-burgundy-dark: #5b0708;
-  --color-red: #d52b1e;
-  --color-black: #1a1a1a;
-  --color-text-muted: #555555;
-  --color-bg: #f9f9f9;
-  --color-white: #ffffff;
-  --color-border: #e8e8e8;
+  --color-burgundy: #012345;      /* Deep Blue: Cor principal, escura e sóbria */
+  --color-burgundy-dark: #244653; /* Mariana Blue: Variação mais escura para hovers */
+  --color-red: #58D8C9;          /* Luminescent Algae: Cor de destaque para botões e links */
+  --color-black: #012345;        /* Deep Blue: Cor base para textos principais */
+  --color-text-muted: #696A6E;   /* Grey: Para textos secundários e helpers */
+  --color-bg: #EAEAEA;           /* Dawning Mist: Fundo principal da página */
+  --color-white: #FFFFFF;        /* White: Para o fundo dos cards e textos sobre fundos escuros */
+  --color-border: #CCCCCC;       /* Grey: Tonalidade para as bordas */
 }
 
 * { box-sizing: border-box; }
@@ -157,3 +157,4 @@ button[disabled] { opacity: 0.6; cursor: not-allowed; }
   .card { padding: 1.5rem; }
   .slide-description { margin-bottom: 1.5rem; }
 }
+
