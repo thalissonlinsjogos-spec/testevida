@@ -216,7 +216,7 @@ Seguem meus dados para contato:
 
     // 3. Geração do link e abertura do WhatsApp
     // IMPORTANTE: Insira seu número de WhatsApp aqui com o código do país e DDD, sem o + e sem espaços.
-    const yourWhatsAppNumber = '5581981524257'; 
+    const yourWhatsAppNumber = '5581994420343'; 
 
     const encodedMessage = encodeURIComponent(textMessage.trim().replace(/  +/g, ' '));
     const waLink = `https://wa.me/${yourWhatsAppNumber}?text=${encodedMessage}`;
@@ -234,3 +234,4 @@ document.addEventListener('DOMContentLoaded', () => {
   attachCurrencyMasks();
   updateSlider();
 });
+
